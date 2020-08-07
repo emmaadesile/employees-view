@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import userData from "../data/users";
 import User from "../pages/users/interface";
 
-const useSingleUser = (userId: number): User => {
-  const [user, setUser] = useState([] as any);
+const useSingleUser = (userId: number) => {
+  const [user, setUser] = useState({} as User);
 
   // effect to get one user
   useEffect(() => {
@@ -17,7 +17,7 @@ const useSingleUser = (userId: number): User => {
   }, [userId]);
 
   const getUser = (users: Array<User>, id: number) => {
-    return users.filter((user) => user.id === id);
+    return users.filter((user) => user.id === id)[0];
   };
 
   return user;

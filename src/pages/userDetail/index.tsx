@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useParams } from "react-router-dom";
 import useSingleUser from "../../hooks/useSingleUser";
 import { Container, TopSection, Image, Info, Summary } from "./styles";
@@ -7,29 +7,24 @@ const UserDetails = () => {
   const { userId } = useParams();
   const user = useSingleUser(userId);
 
-  console.log(user);
-  // const { first_name, last_name, gender, email, phone } = user;
-
   return (
     <Container>
       <h1>User Details</h1>
-
-      {/* {user.map((singleUser, index) => ( */}
       <React.Fragment>
         <TopSection>
           <Image src={require("../../static/avatar.jpeg")} alt="Avatar" />
           <div className="row">
-            <p className="fullname">Romeo Dudedin</p>
-            <p className="gender">Male</p>
+            <p className="fullname">{user.first_name} {user.last_name}</p>
+            <p className="gender">{user.gender}</p>
           </div>
         </TopSection>
 
         <Info>
           <p className="email">
-            <span>✉</span> rduerdin@reddit.com
+            <span role="img" aria-label="icon">✉</span> {user.email}
           </p>
           <p className="phone">
-            <span>📞</span> 9384383253
+            <span role="img" aria-label="icon">📞</span> {user.phone}
           </p>
         </Info>
 

@@ -6,7 +6,6 @@ import User from "./interface";
 
 const Users = () => {
   const [users] = useData();
-  console.log(users);
 
   return (
     <Container>
