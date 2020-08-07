@@ -1,11 +1,11 @@
 interface User {
-  id: string;
+  id: number;
   first_name: string;
   last_name: string;
   email: string;
   gender: string;
   phone: number;
-  image: string | null;
+  image?: string;
 }
 
 export default User;

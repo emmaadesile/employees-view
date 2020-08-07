@@ -1,10 +1,12 @@
 import React from "react";
-import useData from "../../data/useData";
+import { Link } from "react-router-dom";
+import useData from "../../hooks/useAllUsers";
 import { Container, Title, TableRow, TableHead } from "./styles";
-import User from './interface';
+import User from "./interface";
 
 const Users = () => {
   const [users] = useData();
+  console.log(users);
 
   return (
     <Container>
@@ -18,13 +20,15 @@ const Users = () => {
       </TableHead>
       {users.map((user: User, index: number) => (
         <React.Fragment key={index}>
-          <TableRow>
-            <p className="firstName">{user.first_name}</p>
-            <p className="lastName">{user.last_name}</p>
-            <p className="email">{user.email}</p>
-            <p className="gender">{user.gender}</p>
-            <p className="phone">{user.phone}</p>
-          </TableRow>
+          <Link to={`/user/${user.id}`}>
+            <TableRow>
+              <p className="firstName">{user.first_name}</p>
+              <p className="lastName">{user.last_name}</p>
+              <p className="email">{user.email}</p>
+              <p className="gender">{user.gender}</p>
+              <p className="phone">{user.phone}</p>
+            </TableRow>
+          </Link>
         </React.Fragment>
       ))}
     </Container>

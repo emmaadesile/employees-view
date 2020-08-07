@@ -11,11 +11,16 @@ const tableStyles = css`
   }
 `;
 
-const Container = styled.div`
+const Container = styled.section`
   width: max(75%, 700px);
   margin: 0 auto;
   padding: 2rem;
   overflow-x: scroll;
+
+  a {
+    text-decoration: none;
+    color: #777;
+  }
 `;
 
 const Title = styled.h1`
@@ -36,8 +41,7 @@ const TableHead = styled.div`
 
 const TableRow = styled.div`
   ${tableStyles};
-  transition: background 300ms ease-in;
-
+  transition: background-color 300ms ease-in;
   cursor: pointer;
 
   .email {
@@ -45,7 +49,7 @@ const TableRow = styled.div`
   }
 
   &:hover {
-    background: #f7f7f7;
+    background-color: #f7f7f7;
   }
 `;
 
