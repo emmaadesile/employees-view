@@ -6,6 +6,7 @@ const usersData = [
     email: "rduerdin0@reddit.com",
     gender: "Male",
     phone: 6638243591,
+    summary: ''
   },
   {
     id: 2,
