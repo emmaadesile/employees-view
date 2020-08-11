@@ -1,9 +1,9 @@
-import React, {useEffect} from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import useSingleUser from "../../hooks/useSingleUser";
 import { Container, TopSection, Image, Info, Summary } from "./styles";
 
-const UserDetails = () => {
+const UserDetails: React.FC = () => {
   const { userId } = useParams();
   const user = useSingleUser(userId);
 
@@ -14,17 +14,25 @@ const UserDetails = () => {
         <TopSection>
           <Image src={require("../../static/avatar.jpeg")} alt="Avatar" />
           <div className="row">
-            <p className="fullname">{user.first_name} {user.last_name}</p>
+            <p className="fullname">
+              {user.first_name} {user.last_name}
+            </p>
             <p className="gender">{user.gender}</p>
           </div>
         </TopSection>
 
         <Info>
           <p className="email">
-            <span role="img" aria-label="icon">✉</span> {user.email}
+            <span role="img" aria-label="icon">
+              ✉
+            </span>{" "}
+            {user.email}
           </p>
           <p className="phone">
-            <span role="img" aria-label="icon">📞</span> {user.phone}
+            <span role="img" aria-label="icon">
+              📞
+            </span>{" "}
+            {user.phone}
           </p>
         </Info>
 
@@ -39,8 +47,6 @@ const UserDetails = () => {
           </p>
         </Summary>
       </React.Fragment>
-
-      {/* ))} */}
     </Container>
   );
 };

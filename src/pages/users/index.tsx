@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import useData from "../../hooks/useAllUsers";
+import useAllUsers from "../../hooks/useAllUsers";
 import { Container, Title, TableRow, TableHead } from "./styles";
 import User from "./interface";
 
-const Users = () => {
-  const [users] = useData();
+const Users: React.FC = () => {
+  const users = useAllUsers();
 
   return (
     <Container>

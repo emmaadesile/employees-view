@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import userData from '../data/users'
+import usersData from '../data/users'
 
 const useAllUsers = () => {
   const [users, setUsers] = useState([] as any);
@@ -7,13 +7,13 @@ const useAllUsers = () => {
   // effect to get users
   useEffect(() => {
     const fetchUsers = async (): Promise<void> => {
-      const result = await Promise.resolve(userData);
+      const result = await Promise.resolve(usersData);
       setUsers(result);
     }
     fetchUsers();
   }, [])
 
-  return [ users ];
+  return users;
 };
 
 export default useAllUsers;
