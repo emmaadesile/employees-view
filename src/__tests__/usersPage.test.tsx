@@ -1,5 +1,14 @@
 import React from "react";
-import { render, getByText, act, screen } from "@testing-library/react";
+import {
+  render,
+  getByText,
+  fireEvent,
+  wait,
+  screen,
+  findByTestId,
+  getByTestId,
+  getAllByTestId,
+} from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import Users from "../pages/users";
@@ -25,28 +34,51 @@ jest.mock("../hooks/useAllUsers", () =>
   ])
 );
 
+afterEach(() => {
+  jest.clearAllMocks();
+});
+
 describe("All users", () => {
-  test("shows all users", async () => {
+  test("shows all users", () => {
     const { container } = render(
       <Router>
         <Users />
       </Router>
     );
 
-    const homeTitle = getByText(container, /users/i);
-    const firstName = getByText(container, /first name/i);
-    const lastName = getByText(container, /last name/i);
-    const email = getByText(container, /email/i);
-    const gender = getByText(container, /gender/i);
-    const phone = getByText(container, /phone/i);
+    const tableHeaders = [
+      /users/i,
+      /first name/i,
+      /last name/i,
+      /email/i,
+      /gender/i,
+      /phone/i,
+    ];
 
-    expect(homeTitle).toBeInTheDocument();
-    expect(firstName).toBeInTheDocument();
-    expect(lastName).toBeInTheDocument();
-    expect(email).toBeInTheDocument();
-    expect(gender).toBeInTheDocument();
-    expect(phone).toBeInTheDocument();
+    tableHeaders.forEach((header: RegExp) => {
+      let headerText = getByText(container, header);
+      expect(headerText).toBeInTheDocument();
+    });
 
-    screen.debug(container);
+    const userLink = getAllByTestId(container, "user-link")[0];
+    expect(userLink).toHaveAttribute('href', '/user/1');
+
+    // expect(screen.findByTestId("user-link"));
+    // expect(screen.findByTestId("user-link")).toHaveAttribute('href', '/user/1');
+    // expect(userRowLink).toBe('/user/1');
+
+    // const homeTitle = getByText(container, /users/i);
+    // const firstName = getByText(container, /first name/i);
+    // const lastName = getByText(container, /last name/i);
+    // const email = getByText(container, /email/i);
+    // const gender = getByText(container, /gender/i);
+    // const phone = getByText(container, /phone/i);
+
+    // expect(homeTitle).toBeInTheDocument();
+    // expect(firstName).toBeInTheDocument();
+    // expect(lastName).toBeInTheDocument();
+    // expect(email).toBeInTheDocument();
+    // expect(gender).toBeInTheDocument();
+    // expect(phone).toBeInTheDocument();
   });
 });

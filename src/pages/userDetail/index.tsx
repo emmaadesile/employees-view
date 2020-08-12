@@ -14,32 +14,32 @@ const UserDetails: React.FC = () => {
         <TopSection>
           <Image src={require("../../static/avatar.jpeg")} alt="Avatar" />
           <div className="row">
-            <p className="fullname">
+            <p className="fullname" data-testid="fullname">
               {user.first_name} {user.last_name}
             </p>
-            <p className="gender">{user.gender}</p>
+            <p className="gender" data-testid="gender">{user.gender}</p>
           </div>
         </TopSection>
 
         <Info>
-          <p className="email">
-            <span role="img" aria-label="icon">
+          <div className="email">
+            <span role="img" aria-label="icon" data-testid="email-icon">
               ✉
             </span>{" "}
-            {user.email}
-          </p>
-          <p className="phone">
+            <p data-testid="email">{user.email}</p>
+          </div>
+          <div className="phone">
             <span role="img" aria-label="icon">
               📞
             </span>{" "}
-            {user.phone}
-          </p>
+            <p data-testid="phone">{user.phone}</p>
+          </div>
         </Info>
 
         <Summary>
           <h3 className="title">Summary</h3>
 
-          <p className="summary">
+          <p className="summary" data-testid="summary">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque
             delectus, quis temporibus, nemo quisquam est officiis cum natus,
             quidem sunt sapiente? Voluptate dolore quasi earum magni explicabo

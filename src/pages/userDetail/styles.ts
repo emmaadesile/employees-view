@@ -46,8 +46,14 @@ const Info = styled.div`
   border-radius: 10px;
   font-weight: 500;
 
-  p > span {
-    margin-right: 0.8rem;
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      margin-right: 0.8rem;
+    }
   }
 `;
 

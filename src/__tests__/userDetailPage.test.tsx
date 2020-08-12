@@ -1,24 +1,54 @@
-// import React from "react";
-// import { BrowserRouter as Router, Route } from "react-router-dom";
-// import { render, getByText } from "@testing-library/react";
-// import UserDetails from "../pages/userDetail";
+import React from "react";
+import {
+  render,
+  getByText,
+  getByAltText,
+  getByTestId,
+} from "@testing-library/react";
+import UserDetails from "../pages/userDetail";
 
-// jest.mock("react-router-dom", () => {
-//   const userId = 1;
+jest.mock("react-router-dom", () => {
+  const userId = 1;
 
-//   return {
-//     useParams: () => ({ userId }),
-//   };
-// });
+  return {
+    useParams: jest.fn(() => ({ userId })),
+  };
+});
 
-// test("should render user detail page", () => {
-//   const { container } = render(
-//     <Router>
-//         <UserDetails />
-//     </Router>
-//   );
+jest.mock("../hooks/useSingleUser", () =>
+  jest.fn(() => ({
+    id: 1,
+    first_name: "Wood",
+    last_name: "Cleobury",
+    email: "wcleobury1@taobao.com",
+    gender: "Male",
+    phone: 1272716107,
+  }))
+);
 
-//   const pageTitle = getByText(container, /user details/i);
+afterEach(() => {
+  jest.clearAllMocks();
+});
 
-//   expect(pageTitle).toBeInTheDocument();
-// });
+test("should render user detail page", () => {
+  const { container } = render(<UserDetails />);
+  const user = {
+    id: 1,
+    first_name: "Wood",
+    last_name: "Cleobury",
+    email: "wcleobury1@taobao.com",
+    gender: "Male",
+    phone: 1272716107,
+  };
+
+  expect(getByText(container, /user details/i)).toBeInTheDocument();
+  expect(getByText(container, /summary/i)).toBeInTheDocument();
+  expect(getByAltText(container, /avatar/i)).toBeInTheDocument();
+  expect(getByTestId(container, "fullname")).toHaveTextContent(
+    `${user.first_name} ${user.last_name}`
+  );
+
+  expect(getByTestId(container, "email")).toHaveTextContent(user.email);
+  expect(getByTestId(container, "phone")).toHaveTextContent(String(user.phone));
+  expect(getByTestId(container, "gender")).toHaveTextContent(user.gender);
+});

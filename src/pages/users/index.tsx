@@ -19,15 +19,15 @@ const Users: React.FC = () => {
       </TableHead>
       {users.map((user: User, index: number) => (
         <React.Fragment key={index}>
-          <Link to={`/user/${user.id}`}>
-            <TableRow>
+          <TableRow>
+            <Link to={`/user/${user.id}`} data-testid="user-link">
               <p className="firstName">{user.first_name}</p>
-              <p className="lastName">{user.last_name}</p>
-              <p className="email">{user.email}</p>
-              <p className="gender">{user.gender}</p>
-              <p className="phone">{user.phone}</p>
-            </TableRow>
-          </Link>
+            </Link>
+            <p className="lastName">{user.last_name}</p>
+            <p className="email">{user.email}</p>
+            <p className="gender">{user.gender}</p>
+            <p className="phone">{user.phone}</p>
+          </TableRow>
         </React.Fragment>
       ))}
     </Container>

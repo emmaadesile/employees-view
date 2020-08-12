@@ -42,7 +42,11 @@ const TableHead = styled.div`
 const TableRow = styled.div`
   ${tableStyles};
   transition: background-color 300ms ease-in;
-  cursor: pointer;
+  /* cursor: pointer; */
+
+  a {
+    color: inherit;
+  }
 
   .email {
     flex-basis: 230px;
