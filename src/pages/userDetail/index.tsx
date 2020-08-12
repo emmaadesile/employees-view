@@ -12,12 +12,21 @@ const UserDetails: React.FC = () => {
       <h1>User Details</h1>
       <React.Fragment>
         <TopSection>
-          <Image src={require("../../static/avatar.jpeg")} alt="Avatar" />
+          <Image
+            src={
+              user.gender === "Male"
+                ? require("../../static/avatar.jpeg")
+                : require("../../static/avatar2.jpeg")
+            }
+            alt="Avatar"
+          />
           <div className="row">
             <p className="fullname" data-testid="fullname">
               {user.first_name} {user.last_name}
             </p>
-            <p className="gender" data-testid="gender">{user.gender}</p>
+            <p className="gender" data-testid="gender">
+              {user.gender}
+            </p>
           </div>
         </TopSection>
 

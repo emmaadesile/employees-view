@@ -2,11 +2,6 @@ import React from "react";
 import {
   render,
   getByText,
-  fireEvent,
-  wait,
-  screen,
-  findByTestId,
-  getByTestId,
   getAllByTestId,
 } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -55,17 +50,13 @@ describe("All users", () => {
       /phone/i,
     ];
 
-    tableHeaders.forEach((header: RegExp) => {
+    tableHeaders.forEach((header: RegExp): void => {
       let headerText = getByText(container, header);
       expect(headerText).toBeInTheDocument();
     });
 
     const userLink = getAllByTestId(container, "user-link")[0];
     expect(userLink).toHaveAttribute('href', '/user/1');
-
-    // expect(screen.findByTestId("user-link"));
-    // expect(screen.findByTestId("user-link")).toHaveAttribute('href', '/user/1');
-    // expect(userRowLink).toBe('/user/1');
 
     // const homeTitle = getByText(container, /users/i);
     // const firstName = getByText(container, /first name/i);

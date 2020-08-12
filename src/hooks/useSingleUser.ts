@@ -2,6 +2,13 @@ import { useState, useEffect } from "react";
 import userData from "../data/users";
 import User from "../pages/users/interface";
 
+/**
+ * Custom hook to show the details of a user
+ *
+ * @export
+ * @param {number} userId
+ * @returns {Object} Object with user details
+ */
 const useSingleUser = (userId: number) => {
   const [user, setUser] = useState({} as User);
 
